@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(MainActivity.this,"input/output exception",Toast.LENGTH_LONG).show();
                 }
          //---------------------------check files have been download
-                File monitor_file=new File("/amds/monitor.bin");
+                //File monitor_file=new File("/amds/monitor.bin");
                 File post_file=new File("/amds/post.bin");
                 if(!monitor_file.exists()&&!post_file.exists()){
                     Log.d(TAG,"monitor_file and post_file not exist");
