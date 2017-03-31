@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">nrl_download_file</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">369713386702269</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="teacher1">謝朝和</string>
+    <string name="teacher2">江清泉</string>
+    <string name="student">譚庚倫</string>
+    <string name="info1">銘傳大學資訊傳播教授</string>
+    <string name="info2">銘傳大學資訊傳播副教授</string>
+    <string name="info3">銘傳大學資訊傳播學生</string>
+</resources>

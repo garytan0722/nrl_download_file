@@ -1,0 +1,52 @@
+{
+  "project_info": {
+    "project_number": "835184298612",
+    "project_id": "firebase-amds"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835184298612:android:a909b921322f3bab",
+        "android_client_info": {
+          "package_name": "com.download.nrl_download_file"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835184298612-lcmpbgbc2sah9ucfkafs0jv5mbjuqqa1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.download.nrl_download_file",
+            "certificate_hash": "ED232AA8C5126D413F350CB5E7B3FBEE02AF76BE"
+          }
+        },
+        {
+          "client_id": "835184298612-dk05fhkffqnmc7jsvnbnmu7qk5a06kue.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "835184298612-0kmje7ui0ltehijsaq4phceifiihtavs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnYg9MIFNI9blKZMGlJkw6kacw65CWZ2w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

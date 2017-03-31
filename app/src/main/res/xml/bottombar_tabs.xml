@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@drawable/home"
+        title="Home"/>
+
+    <tab
+        id="@+id/tab_record"
+        icon="@drawable/record"
+        title="Record" />
+    <tab
+        id="@+id/tab_about"
+        icon="@drawable/about"
+        title="About" />
+    <tab
+        id="@+id/tab_setting"
+        icon="@drawable/setting"
+        title="Setting" />
+</tabs>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.shinelw.library.ColorArcProgressBar
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/bar"
+        app:is_need_content="true"
+        app:back_width="2dp"
+        app:front_width="10dp"
+        app:total_engle="270"
+        app:front_color1="#FFF506"
+        app:front_color2="#FF8406"
+        app:front_color3="#FF0613"
+        app:is_need_title="true"
+        app:is_need_unit="true"
+        app:string_title="Find"
+        app:string_unit="Malware Packets"
+        app:back_color="@android:color/darker_gray"
+        />
+</LinearLayout>
