@@ -30,9 +30,9 @@ public class MyGcmListenerService extends GcmListenerService {
     // [START receive_message]
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        String message = data.getString("message");
+        String message = data.getString("msg");
         Log.d(TAG, "From: " + from);
-        Log.d(TAG, "Message: " + message);
+        Log.d(TAG, "Message: " + data);
 
         if (from.startsWith("/topics/")) {
             // message received from some topic.
@@ -66,6 +66,7 @@ public class MyGcmListenerService extends GcmListenerService {
         long[] vibrate_effect ={1000, 500, 1000, 400, 1000, 300, 1000, 200, 1000, 100};
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Log.d(TAG,"Message"+message);
         intent.putExtra("title","Warning");
         intent.putExtra("content",message);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

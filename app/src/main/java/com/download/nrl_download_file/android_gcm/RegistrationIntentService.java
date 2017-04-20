@@ -79,7 +79,7 @@ public class RegistrationIntentService extends IntentService {
 
     private void sendRegistrationToServer(String token) throws IOException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         HttpsURLConnection connection;
-        URL url = new URL("https://amds.nrl.mcu.edu.tw/amds/get_token.php");
+        URL url = new URL("https://amds.nrl.mcu.edu.tw:8080/token");
         InputStream instream = getResources().openRawResource(R.raw.amds);
         KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
         TelephonyManager tm = (TelephonyManager)getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
