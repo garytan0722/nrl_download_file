@@ -14,6 +14,13 @@ public class login_info {
     public String fb_name;
     public Context context;
 
+    public String getAndroid_id() {
+        return android_id;
+    }
+
+
+
+    public String android_id;
     public Context getContext() {
         return context;
     }
@@ -62,5 +69,7 @@ public class login_info {
         this.fb_name = fb_name;
     }
 
-
+    public void setAndroid_id(String android_id) {
+        this.android_id = android_id;
+    }
 }

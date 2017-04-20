@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -64,10 +65,14 @@ public class Startapp extends AppCompatActivity implements View.OnClickListener,
     private AccessTokenTracker accessTokenTracker;
     private AccessToken accessToken;
     private Dialog dialog;
+    private  String android_id;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TypefaceProvider.registerDefaultIconSets();
+
+
+        android_id = Settings.Secure.getString(this.getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         setContentView(R.layout.start_app);
         google_btn=(BootstrapButton)findViewById(R.id.google);
         fb_btn=(BootstrapButton)findViewById(R.id.fb);
@@ -112,6 +117,7 @@ public class Startapp extends AppCompatActivity implements View.OnClickListener,
                                 info.setLogin_type("2");
                                 info.setFb_id(object.optString("id"));
                                 info.setFb_name(object.optString("name"));
+                                info.setAndroid_id(android_id);
                             }
 
                         }
@@ -141,6 +147,7 @@ public class Startapp extends AppCompatActivity implements View.OnClickListener,
                                 info.setLogin_type("2");
                                 info.setFb_id(object.optString("id"));
                                 info.setFb_name(object.optString("name"));
+                                info.setAndroid_id(android_id);
                                 upload_info upload=new upload_info();
                                 upload.execute(info);
                                 Intent intent=new Intent(Startapp.this,MainActivity.class);
@@ -270,6 +277,7 @@ public class Startapp extends AppCompatActivity implements View.OnClickListener,
                     info.setLogin_type("2");
                     info.setFb_id(object.optString("id"));
                     info.setFb_name(object.optString("name"));
+                    info.setAndroid_id(android_id);
                     upload_info upload=new upload_info();
                     upload.execute(info);
                     Intent intent=new Intent(Startapp.this,MainActivity.class);
@@ -299,6 +307,7 @@ public class Startapp extends AppCompatActivity implements View.OnClickListener,
             info.setLogin_type("1");
             info.setGoogle_id(personId);
             info.setGoogle_name(personName);
+            info.setAndroid_id(android_id);
             upload_info upload=new upload_info();
             upload.execute(info);
             Intent intent=new Intent(Startapp.this,MainActivity.class);
