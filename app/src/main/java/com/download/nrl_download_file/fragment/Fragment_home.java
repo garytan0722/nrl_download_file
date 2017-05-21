@@ -53,7 +53,9 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -75,6 +77,7 @@ public class Fragment_home extends Fragment {
     public List<String> payload;
     public static String TAG="Fragment_home";
     public String malware;
+    public SimpleDateFormat formatter;
     public Fragment_home() {
         // Required empty public constructor
     }
@@ -87,7 +90,6 @@ public class Fragment_home extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static Fragment_home newInstance(String imei, String param2) {
         Fragment_home fragment = new Fragment_home();
-        Log.d(TAG,"123");
         Bundle bundle=new Bundle();
         bundle.putString("imei",imei);
         fragment.setArguments(bundle);
@@ -98,12 +100,14 @@ public class Fragment_home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"onCreate");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root_view=inflater.inflate(R.layout.fragment_home,container,false);
+        formatter= new SimpleDateFormat("dd MMM yyyy  hh:mm:ss a");
         mRecyclerView = (RecyclerView) root_view.findViewById(R.id.recyclerView);
         QueryData querydata=new QueryData(getActivity());
         querydata.execute(getArguments().getString("imei"));
@@ -130,7 +134,8 @@ public class Fragment_home extends Fragment {
                 try {
                     JSONObject element= new JSONObject(adapter.getData().get(i));
                     payload.add(element.getString("payload"));
-                    ((ViewHolder) viewHolder).time.setText("Time:"+element.getString("time"));
+                    String time = formatter.format(new Date(Integer.valueOf(element.getString("time"))));
+                    ((ViewHolder) viewHolder).time.setText("Time:"+time);
                     ((ViewHolder) viewHolder).dst_ip.setText("DSTIP:"+element.getString("dst_ip"));
                     ((ViewHolder) viewHolder).dst_port.setText("DSTPORT:"+element.getString("dst_port"));
                     ((ViewHolder) viewHolder).protocol.setText("PROTOCOL:"+element.getString("protocol"));
