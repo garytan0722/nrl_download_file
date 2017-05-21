@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +72,8 @@ public class Startapp extends AppCompatActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         TypefaceProvider.registerDefaultIconSets();
 
-
-        android_id = Settings.Secure.getString(this.getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        TelephonyManager tM=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+        android_id = tM.getDeviceId();
         setContentView(R.layout.start_app);
         google_btn=(BootstrapButton)findViewById(R.id.google);
         fb_btn=(BootstrapButton)findViewById(R.id.fb);

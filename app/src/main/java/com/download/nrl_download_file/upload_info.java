@@ -45,7 +45,7 @@ public class upload_info extends AsyncTask<login_info, Void, String> {
         OutputStream output = null;
         HttpsURLConnection connection = null;
         try {
-            URL url = new URL("https://amds.nrl.mcu.edu.tw/amds/get_login.php");
+            URL url = new URL("https://amds.nrl.mcu.edu.tw:8080/user_login");
             InputStream instream = info.getContext().getResources().openRawResource(R.raw.amds);
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
             try {
@@ -68,12 +68,12 @@ public class upload_info extends AsyncTask<login_info, Void, String> {
             List<NameValuePair> value = new ArrayList<NameValuePair>();
             if(info.getLogin_type().equals("1")){
                 value.add(new BasicNameValuePair("type", info.getLogin_type()));
-                value.add(new BasicNameValuePair("google_id", info.getGoogle_id()));
+                value.add(new BasicNameValuePair("id", info.getGoogle_id()));
                 value.add(new BasicNameValuePair("name", info.getGoogle_name()));
                 value.add(new BasicNameValuePair("imei",info.getAndroid_id()));
             }else{
                 value.add(new BasicNameValuePair("type", info.getLogin_type()));
-                value.add(new BasicNameValuePair("fb_id", info.getFb_id()));
+                value.add(new BasicNameValuePair("id", info.getFb_id()));
                 value.add(new BasicNameValuePair("name", info.getFb_name()));
                 value.add(new BasicNameValuePair("imei",info.getAndroid_id()));
             }

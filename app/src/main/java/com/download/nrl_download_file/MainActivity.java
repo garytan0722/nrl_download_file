@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import android.view.ContextThemeWrapper;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
-        execute();
+        //execute();
     }
     public void defineUI(){
         download=(Button)findViewById(R.id.dowload);
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(title);
                 builder.setMessage(content);
-                builder.setIcon(R.drawable.ic_stat_ic_notification);
+                builder.setIcon(R.drawable.ic_bug);
                 builder.setPositiveButton("OK",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -127,7 +128,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     public void create_fragment(){
-        fragment_home=Fragment_home.newInstance("fragment","home");
+        TelephonyManager tM=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+        String imei = tM.getDeviceId();
+        fragment_home=Fragment_home.newInstance(imei,"home");
         fragment_record=Fragment_record.newInstance("fragment","record");
         fragment_about=Fragment_about.newInstance("fragment","about");
         fragment_setting=Fragment_setting.newInstance("fragment","setting");
