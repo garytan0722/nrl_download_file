@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TelephonyManager tM=(TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
         String imei = tM.getDeviceId();
         fragment_home=Fragment_home.newInstance(imei,"home");
-        fragment_record=Fragment_record.newInstance("fragment","record");
+        fragment_record=Fragment_record.newInstance(imei,"record");
         fragment_about=Fragment_about.newInstance("fragment","about");
         fragment_setting=Fragment_setting.newInstance("fragment","setting");
         fragmentManager=getSupportFragmentManager();
