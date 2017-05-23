@@ -1,6 +1,7 @@
 package com.download.nrl_download_file.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,12 +14,16 @@ import android.view.ViewGroup;
 
 import com.download.nrl_download_file.R;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import org.apache.http.NameValuePair;
@@ -67,6 +72,7 @@ public class Fragment_record extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String TAG="Fragment_record";
     public  LineChart lineChart;
+    public PieChart pieChart;
     public SimpleDateFormat formatter;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -113,6 +119,7 @@ public class Fragment_record extends Fragment {
         formatter= new SimpleDateFormat("hh:mm");
         queryData.execute(getArguments().getString("imei"));
         lineChart = (LineChart) root_view.findViewById(R.id.chart_line);
+        pieChart=(PieChart)root_view.findViewById(R.id.chart_pie);
         return root_view;
     }
 
@@ -251,6 +258,7 @@ public class Fragment_record extends Fragment {
                 JSONObject jsonResponse = null;
                 JSONArray jsonArray=null,labelArray=null;
                 ArrayList<Entry> data=new ArrayList<Entry>();
+                float malware_count = 0,normal_count=0;
                 final ArrayList<String> label=new ArrayList<String>();
                 try {
                     jsonResponse = new JSONObject(result);
@@ -265,6 +273,10 @@ public class Fragment_record extends Fragment {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         String time_label = formatter.format(new Date(Integer.valueOf(json_label.getString("time"))));
                         Integer size=Integer.valueOf(jsonObject.getString("size"));
+                        Float malware=Float.valueOf(jsonObject.getString("malware"));
+                        Float normal=Float.valueOf(jsonObject.getString("normal"));
+                        malware_count+=malware;
+                        normal_count+=normal;
                         label.add(time_label);
                         data.add(new Entry(i,size));
                     } catch (JSONException e) {
@@ -273,6 +285,15 @@ public class Fragment_record extends Fragment {
 
                 }
                 LineDataSet setpacket = new LineDataSet(data, "Packet Size");
+                List<PieEntry> entries = new ArrayList<>();
+                int[] colors=new int[]{Color.rgb(255, 55, 0),Color.rgb(0, 255, 85)};
+                entries.add(new PieEntry(malware_count, "Malware"));
+                entries.add(new PieEntry(normal_count, "Normal"));
+                PieDataSet set = new PieDataSet(entries,"");
+                set.setColors(colors);
+                PieData data1= new PieData(set);
+                pieChart.setData(data1);
+                pieChart.invalidate(); // refresh
                 setpacket.setAxisDependency(YAxis.AxisDependency.LEFT);
                 LineData showdata = new LineData(setpacket);
                 lineChart.setData(showdata);

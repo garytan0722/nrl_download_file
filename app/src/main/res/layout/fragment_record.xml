@@ -2,9 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical">
 <LinearLayout
     android:layout_height="wrap_content"
@@ -12,7 +16,7 @@
     android:orientation="vertical"
     android:layout_weight="1">
     <TextView
-        android:text="TextView"
+        android:text="LineChart for NetFlow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2" />
@@ -23,15 +27,20 @@
 </LinearLayout>
     <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_weight="1">
         <TextView
-            android:text="TextView"
+            android:text="Malware and Normal Packet Pie Chart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView" />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_pie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         </LinearLayout>
 
     </LinearLayout>
+    </ScrollView>
 </FrameLayout>
