@@ -1,8 +1,11 @@
 package com.download.nrl_download_file.adapter;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.PowerManager;
+import android.support.v4.app.FragmentTransaction;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +15,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.download.nrl_download_file.R;
 import com.download.nrl_download_file.model_info;
 
@@ -53,9 +55,11 @@ public class setting_listview_adapter  extends BaseAdapter implements View.OnCli
     private Context context;
     private static  final String TAG="listview_adapter";
     private String  imei;
-    public setting_listview_adapter(Context context, List<model_info> model){
+    private FragmentManager fragManager;
+    public setting_listview_adapter(Context context, List<model_info> model, FragmentManager fragManager){
         myInflater = LayoutInflater.from(context);
         this.model = model;
+        this.fragManager=fragManager;
     }
     @Override
     public int getCount() {
@@ -242,7 +246,21 @@ public class setting_listview_adapter  extends BaseAdapter implements View.OnCli
         @Override
         protected void onPostExecute(String result) {
             Log.d(TAG, "Result" + result);
-
+            JSONObject jsonObject= null;
+            try {
+                jsonObject = new JSONObject(result);
+                String status=jsonObject.getString("status");
+                if(status.equals("true")){
+                    Fragment frg = null;
+                    frg = fragManager.findFragmentByTag("Fragment_setting");
+                    final FragmentTransaction ft = fragManager.beginTransaction();
+                    ft.detach(frg);
+                    ft.attach(frg);
+                    ft.commit();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         }
     }

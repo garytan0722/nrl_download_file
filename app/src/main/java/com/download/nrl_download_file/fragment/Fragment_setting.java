@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,7 @@ public class Fragment_setting extends Fragment {
     private ListView list;
     private TextView current_model;
     List<model_info> model_list;
+    FragmentManager fragManager;
     private setting_listview_adapter adapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -108,6 +110,7 @@ public class Fragment_setting extends Fragment {
         model_list=new ArrayList<model_info>();
         current_model=(TextView)root_view.findViewById(R.id.current_model);
         list=(ListView) root_view.findViewById(R.id.list_view);
+        fragManager=getFragmentManager();
         QueryData queryData=new QueryData(getActivity());
         queryData.execute(getArguments().getString("imei"));
         return root_view;
@@ -257,7 +260,7 @@ public class Fragment_setting extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter = new setting_listview_adapter(context,model_list);
+            adapter = new setting_listview_adapter(context,model_list,fragManager);
             list.setAdapter(adapter);
 
     }

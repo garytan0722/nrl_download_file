@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tab_setting:
                 Log.d(TAG,"Setting");
                 trans=fragmentManager.beginTransaction();
-                trans.replace(R.id.fragment,fragment_setting);
+                trans.replace(R.id.fragment,fragment_setting,"Fragment_setting");
                 trans.addToBackStack(null);
                 trans.commit();
                 break;
