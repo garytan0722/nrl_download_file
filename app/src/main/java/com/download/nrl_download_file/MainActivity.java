@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragment_home=Fragment_home.newInstance(imei,"home");
         fragment_record=Fragment_record.newInstance(imei,"record");
         fragment_about=Fragment_about.newInstance("fragment","about");
-        fragment_setting=Fragment_setting.newInstance("fragment","setting");
+        fragment_setting=Fragment_setting.newInstance(imei,"setting");
         fragmentManager=getSupportFragmentManager();
 
 //        trans.add(R.id.fragment,fragment_home);
