@@ -24,7 +24,7 @@
         android:name="android.support.multidex.MultiDexApplication">
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".Startapp"
             android:label="@string/app_name">
             <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"-->
             <intent-filter>
@@ -32,8 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".MainActivity">-->
-        <!--</activity>-->
+        <activity android:name=".MainActivity">
+        </activity>
         <service
             android:name=".android_gcm.RegistrationIntentService"
             android:exported="false" />
